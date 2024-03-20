@@ -108,7 +108,7 @@
       </Variable>
       <Variable x:TypeArguments="x:String" Name="ACHDate">
         <Variable.Default>
-          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">"ACH" + DateTime.Today.ToString("MMDDYY")</CSharpValue>
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">"ACH" + DateTime.Today.ToString("MMddyy")</CSharpValue>
         </Variable.Default>
       </Variable>
     </Sequence.Variables>
