@@ -122,7 +122,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.xls" Folder="P:\RoboticsProcessAutomation\Cashreceipts" sap:VirtualizedContainerService.HintSize="484,681" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.xls" Folder="P:\Accounting\Shared Files\Cash receipts\UIPath" sap:VirtualizedContainerService.HintSize="484,681" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -147,7 +147,7 @@
             <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="388,159" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True">
               <ui:MoveFile.Destination>
                 <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">"P:\\RoboticsProcessAutomation\\CashReceiptsArchive\\" + System.IO.Path.GetFileNameWithoutExtension(CurrentFile.FullName) + DateTime.Today.ToString("MMddyy") + ".xls"</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">"P:\\Accounting\\Shared Files\\Cash receipts\\UIPath\\Archive" + System.IO.Path.GetFileNameWithoutExtension(CurrentFile.FullName) + DateTime.Today.ToString("MMddyy") + ".xls"</CSharpValue>
                 </InArgument>
               </ui:MoveFile.Destination>
               <ui:MoveFile.Path>
