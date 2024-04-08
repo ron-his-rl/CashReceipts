@@ -6,7 +6,7 @@
     <x:Property Name="EVApplicationArgs" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1114,6134</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1114,5944</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -118,7 +118,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="594,6069" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="568,5879" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ACHDate">
         <Variable.Default>
@@ -135,30 +135,19 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,272" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_5">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">
-                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">CustomerName</CSharpReference>
-              </OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">
-                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">System.IO.Path.GetFileNameWithoutExtension(FilePath)</CSharpValue>
-              </InArgument>
-            </Assign.Value>
-          </Assign>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="532,5615" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
+    <Assign sap:VirtualizedContainerService.HintSize="506,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">CustomerName</CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">System.IO.Path.GetFileNameWithoutExtension(FilePath)</CSharpValue>
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="506,5615" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
