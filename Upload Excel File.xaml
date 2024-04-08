@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Excel_File" this:Upload_Excel_File.EVSelectorTitle="&lt;wnd app='*' cls='SunAwtFrame' title='*' /&gt;" this:Upload_Excel_File.EVApplicationPath="C:\McLeod Software\stg_1810\bin\lme - lme 1810 staging_x64.exe" this:Upload_Excel_File.EVApplicationArgs="-host PLSTGMCL05.staging.local -port 5662 -appname D:\McLeod\1810_Staging\lme\deployment\apps\lmclient.application" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Excel_File" this:Upload_Excel_File.FilePath="C:\Users\ron.hiscock\Documents\UIP Cash Receipts UIPath review\Cashreceipts\ADVMHOH.xls" this:Upload_Excel_File.EVSelectorTitle="&lt;wnd app='*' cls='SunAwtFrame' title='*' /&gt;" this:Upload_Excel_File.EVApplicationPath="C:\McLeod Software\stg_1810\bin\lme - lme 1810 staging_x64.exe" this:Upload_Excel_File.EVApplicationArgs="-host PLSTGMCL05.staging.local -port 5662 -appname D:\McLeod\1810_Staging\lme\deployment\apps\lmclient.application" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="FilePath" Type="InArgument(x:String)" />
     <x:Property Name="EVSelectorTitle" Type="InArgument(x:String)" />
@@ -6,7 +6,7 @@
     <x:Property Name="EVApplicationArgs" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1114,4897</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1114,6134</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -46,6 +46,8 @@
       <x:String>UiPath.CV.Activities</x:String>
       <x:String>UiPath.CV.Activities.Interfaces</x:String>
       <x:String>System.IO</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -108,9 +110,15 @@
       <AssemblyReference>System.IO.Packaging</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="568,4832" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="594,6069" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ACHDate">
         <Variable.Default>
@@ -127,25 +135,36 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="506,82" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">CustomerName</CSharpReference>
-        </OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">
-          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">System.IO.Path.GetFileNameWithoutExtension(FilePath)</CSharpValue>
-        </InArgument>
-      </Assign.Value>
-    </Assign>
-    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="506,4568" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,272" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">
+                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">CustomerName</CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">
+                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">System.IO.Path.GetFileNameWithoutExtension(FilePath)</CSharpValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="532,5615" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="472,4277" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="472,5324" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="ExceptionFound" />
             </Sequence.Variables>
@@ -154,238 +173,113 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click ' Import'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2acf4feb-3e6d-49e5-8247-e0271fdeea2e" InformativeScreenshot="f88db3d778afe8214e214c85f17228a7" Selector="&lt;java name='Import' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Search'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d9a66d89-0d40-48f6-a3c3-ae8775a16aea" InformativeScreenshot="86b2643691ecf170fb901134c53a879c">
-                  <ui:Target.Selector>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Import'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="e080eb66-3222-4a25-8f0a-f20e1407f59b" CvTextArea="16, 89, 37, 14" CvTextArgument="Import" CvType="Text" DesignTimeRectangle="13, 57, 43, 49" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Import'" FullSelectorArgument="&lt;java name='Import' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Import' role='push button' check:text='Import' /&gt;" Guid="53061d29-b60e-4d34-8340-cbcc55affd07" InformativeScreenshot="d929531d7f601d8386884cf56036382d.png" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.ScopeSelectorArgument>
                     <InArgument x:TypeArguments="x:String">
-                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">EVSelectorTitle</CSharpValue>
+                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">EVSelectorTitle</CSharpValue>
                     </InArgument>
-                  </ui:Target.Selector>
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text'" EmptyField="True" sap:VirtualizedContainerService.HintSize="410,155" sap2010:WorkflowViewState.IdRef="TypeInto_1">
-              <ui:TypeInto.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2a2e2716-ea07-4154-8a9b-d9e67a0ab91a" InformativeScreenshot="7c2b40de0f3d0b715d93950c9d1eca16" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;&lt;java cls='Edit' role='text' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:TypeInto.Target>
-              <ui:TypeInto.Text>
+                  </uix:TargetAnchorable.ScopeSelectorArgument>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Search'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="2cdad12e-7ed3-4eba-9af4-722ef23a7221" CvTextArea="16, 64, 31, 10" CvTextArgument="Search" CvType="Text" DesignTimeRectangle="10, 33, 42, 46" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Search'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Search' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Search' role='push button' check:text='Search' /&gt;" Guid="5881de19-df33-4aae-ae63-84275492f110" InformativeScreenshot="3b0a1eefc45ff8a95ec89dcf78d18e71.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Import profile'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="410,218" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="98, 93, 145, 22" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'text'" FullSelectorArgument="&lt;java cls='Edit' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="68ecaf2c-a408-4ca7-bc13-daffce9411dd" InformativeScreenshot="037440fa87160012afd492f299a0f63a.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="63de8269-c7f1-411f-a679-7f47521deafb" CvTextArea="22, 97, 74, 14" CvTextArgument="Import profile" CvType="Text" DesignTimeRectangle="22, 95, 73, 16" ElementType="Text" FriendlyName="'Import profile'" FullSelectorArgument="&lt;java name='Import profile' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Import profile' role='label' check:text='Import profile' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                      <uix:Target CVScreenId="63de8269-c7f1-411f-a679-7f47521deafb" CvTextArea="260, 97, 65, 14" CvTextArgument="Description" CvType="Text" DesignTimeRectangle="261, 95, 64, 16" ElementType="Text" FriendlyName="'Description'" FullSelectorArgument="&lt;java name='Description' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Description' role='label' check:text='Description' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+              <uix:NTypeInto.Text>
                 <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">CustomerName+ "[k(enter)]"</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_24">CustomerName+ "[k(enter)]"</CSharpValue>
                 </InArgument>
-              </ui:TypeInto.Text>
-            </ui:TypeInto>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Click 'label  check_number'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="62c6502e-7a13-4706-99df-bbfacc4c58a6" InformativeScreenshot="7a313f15a52da303ae476ae9ef626afc" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;&lt;java cls='GridTable' role='table' /&gt;&lt;java role='label' tableCol='0' tableRow='0' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text'" EmptyField="True" sap:VirtualizedContainerService.HintSize="410,155" sap2010:WorkflowViewState.IdRef="TypeInto_2">
-              <ui:TypeInto.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bfad6a1f-15bc-4bee-a066-1b2eb75a0772" InformativeScreenshot="0526c1359d9da3892e7f15b5bb488626" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Field Map Detail - PTLS STG 2024.02.12' /&gt;&lt;java cls='Edit' idx='2' role='text' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:TypeInto.Target>
-              <ui:TypeInto.Text>
+              </uix:NTypeInto.Text>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'check_number'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="2b437a6b-77dc-47ab-8b8c-a70eefc036d9" CvTextArea="9, 262, 83, 14" CvTextArgument="check_number" CvType="Text" DesignTimeRectangle="9, 261, 109, 15" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'check_number'" FullSelectorArgument="&lt;java cls='GridTable' role='table' /&gt;&lt;java role='label' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;java cls='GridTable' role='table' /&gt;&lt;java role='label' check:text='check_number' /&gt;" Guid="edb11abf-47f3-4d41-9b76-840274f40b1b" InformativeScreenshot="e98dd889e57cdc3708131486a0eb1b72.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Set blank field equal to'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="410,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable CVScreenId="96ca4df4-a26b-47d4-b329-501f033a2deb" CvElementArea="441, 120, 212, 23" CvType="InputBox" DesignTimeRectangle="442, 121, 210, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'ACH040524'" FullSelectorArgument="&lt;java cls='Edit' idx='2' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="e41c489b-2e67-40c5-baca-be9693ef6a36" InformativeScreenshot="ced43101f1eff521ffa03328ad048b2a.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Field Map Detail - PTLS STG 2024.02.12' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="96ca4df4-a26b-47d4-b329-501f033a2deb" CvTextArea="314, 125, 125, 12" CvTextArgument="Set blank field equal to" CvType="Text" DesignTimeRectangle="314, 123, 125, 16" ElementType="Text" FriendlyName="'Set blank field equal to'" FullSelectorArgument="&lt;java name='Set blank field equal to' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Set blank field equal to' role='label' check:text='Set blank field equal to' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+              <uix:NTypeInto.Text>
                 <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">ACHDate+ "[k(enter)]"</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">ACHDate+ "[k(enter)]"</CSharpValue>
                 </InArgument>
-              </ui:TypeInto.Text>
-            </ui:TypeInto>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Exec'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6994bb94-e35d-48e1-a903-57c51c3e80d7" InformativeScreenshot="3c6103d39922f9e424af27c1ee6f0749" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;&lt;java hasTableAncestor='0' name='Exec' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Import'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d2519494-ee4f-418f-833e-deacbed9598a" InformativeScreenshot="a97019bbc6b4471528278b0e1441deaa" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;&lt;java hasTableAncestor='0' name='Import' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text'" EmptyField="True" sap:VirtualizedContainerService.HintSize="410,155" sap2010:WorkflowViewState.IdRef="TypeInto_3">
-              <ui:TypeInto.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="044eca37-8f78-44b0-8185-336ea16f1e5f" InformativeScreenshot="b38218958fa665886f9f5c7919817c6b" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;&lt;java cls='Edit' idx='4' role='text' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:TypeInto.Target>
-              <ui:TypeInto.Text>
+              </uix:NTypeInto.Text>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Exec'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="12ce0f25-f589-4384-b8f7-ca669371db08" CvTextArea="247, 64, 23, 10" CvTextArgument="Exec" CvType="Text" DesignTimeRectangle="237, 33, 42, 46" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Exec'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Exec' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Exec' role='push button' check:text='Exec' /&gt;" Guid="a9c13299-e13e-455b-9c6a-56f2863a3f51" InformativeScreenshot="058640cfb03ad63e9c987beb783d36d1.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Import'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="c6ff84c2-e540-4cf7-b191-ded9fe96edf8" CvTextArea="294, 64, 29, 12" CvTextArgument="Import" CvType="Text" DesignTimeRectangle="287, 33, 42, 46" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Import'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Import' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Import' role='push button' check:text='Import' /&gt;" Guid="6a5eab7e-3633-42a6-b5b6-ccd64990e482" InformativeScreenshot="693a3bd53295cdc40b18bfde01e09c46.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="c6ff84c2-e540-4cf7-b191-ded9fe96edf8" CvTextArea="261, 97, 64, 14" CvTextArgument="Description" CvType="Text" DesignTimeRectangle="261, 95, 64, 16" ElementType="Text" FriendlyName="'Description'" FullSelectorArgument="&lt;java name='Description' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Description' role='label' check:text='Description' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Import file'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="410,218" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable CVScreenId="21f26450-e67e-4490-b6a1-936878e6888f" CvTextArea="94, 126, 148, 15" CvTextArgument="H:\CashReceiptslmport.xls" CvType="Text" DesignTimeRectangle="92, 122, 460, 22" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'H:\CashReceiptsImport.x…'" FullSelectorArgument="&lt;java cls='Edit' idx='4' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="630f5295-3414-4241-9bbb-98bde48fc602" InformativeScreenshot="4e7d4aee67bf5d279be4da6c8c7c1b14.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="21f26450-e67e-4490-b6a1-936878e6888f" CvTextArea="34, 126, 55, 14" CvTextArgument="Import file" CvType="Text" DesignTimeRectangle="34, 124, 55, 16" ElementType="Text" FriendlyName="'Import file'" FullSelectorArgument="&lt;java name='Import file' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Import file' role='label' check:text='Import file' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+              <uix:NTypeInto.Text>
                 <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">FilePath</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_26">FilePath</CSharpValue>
                 </InArgument>
-              </ui:TypeInto.Text>
-            </ui:TypeInto>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Import'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="804cb901-96ca-4f36-9eba-ea9498c81f7d" InformativeScreenshot="39c39aef3388df0f284e4223908bef6f" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;&lt;java name='Import' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Yes'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="33e4c8f9-8244-4a03-a05e-517f763d8294" InformativeScreenshot="b9cec9171a91a2b2eb3a6f6ffa925420" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** LoadMaster - PTLS STG 2024.02.12' /&gt;&lt;java name='Yes' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Close'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="563410b2-7287-4528-a4d7-31d78016e403" InformativeScreenshot="a5e366913c255e929689c58fc2b962c2" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Data Import Post List - PTLS STG 2024.02.12' /&gt;&lt;java hasTableAncestor='0' name='Close' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
+              </uix:NTypeInto.Text>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Import'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="496d34b3-0c6e-4b4d-bfc9-7590ef357c3d" CvTextArea="251, 224, 38, 14" CvTextArgument="Import" CvType="Text" DesignTimeRectangle="204, 215, 104, 30" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Import'" FullSelectorArgument="&lt;java name='Import' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Import' role='push button' check:text='Import' /&gt;" Guid="da09520a-f176-4268-b1dd-5dc00ac4f5d6" InformativeScreenshot="b48f79c143108ad396407965d9ca0f60.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="186, 163, 264, 94" FriendlyName="'Edit List'" FullSelectorArgument="&lt;java cls='TPanel' role='panel' /&gt;" FuzzySelectorArgument="&lt;java cls='TPanel' role='panel' check:fulltext='Edit List  Exception Report&amp;#xD;&amp;#xA;Import  Exit' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Yes'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="2f7fd464-8e68-4248-8f55-91bf99075d13" CvElementArea="65, 89, 77, 25" CvTextArea="92, 95, 23, 12" CvTextArgument="Yes" CvType="Button" DesignTimeRectangle="66, 89, 76, 24" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Yes'" FullSelectorArgument="&lt;java name='Yes' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Yes' role='push button' check:text='Yes' /&gt;" Guid="bea7160d-29a7-4145-98b7-e8de17e7de82" InformativeScreenshot="3a144726074168dda3670645a260f9e9.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** LoadMaster - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Close'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_10" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="df8ed1a9-3dc1-431f-a434-08d69a20ceac" CvTextArea="403, 468, 34, 12" CvTextArgument="Close" CvType="Text" DesignTimeRectangle="8, 458, 796, 33" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Close'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Close' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Close' role='push button' check:text='Close' /&gt;" Guid="b2344085-10f8-4e36-9c00-1ce4324bb6c4" InformativeScreenshot="cbc36dfa42592b5ed97cbbfa0d2129c2.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Data Import Post List - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
             <ui:UiElementExists DisplayName="Element Exists 'push button'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
               <ui:UiElementExists.Exists>
                 <OutArgument x:TypeArguments="x:Boolean">
@@ -403,7 +297,7 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If sap2010:Annotation.AnnotationText="then email the exception report to the designated people. Otherwise log there was no reported error." DisplayName="If we have the exception report button" sap:VirtualizedContainerService.HintSize="410,1777" sap2010:WorkflowViewState.IdRef="If_1">
+            <If sap2010:Annotation.AnnotationText="then email the exception report to the designated people. Otherwise log there was no reported error." DisplayName="If we have the exception report button" sap:VirtualizedContainerService.HintSize="410,2137" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Condition>
                 <InArgument x:TypeArguments="x:Boolean">
                   <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">ExceptionFound</CSharpValue>
@@ -415,173 +309,65 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,1322" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence sap:VirtualizedContainerService.HintSize="376,1682" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button'" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition Position="Center">
-                        <ui:CursorPosition.OffsetX>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetX>
-                        <ui:CursorPosition.OffsetY>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetY>
-                      </ui:CursorPosition>
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f82ce034-6101-4171-bbc8-1d29a77502a9" InformativeScreenshot="aec2dcd2c3187ac104c440edb57c5b1f" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;&lt;java name='Exception Report' role='push button' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:Click.Target>
-                  </ui:Click>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Print'" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition Position="Center">
-                        <ui:CursorPosition.OffsetX>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetX>
-                        <ui:CursorPosition.OffsetY>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetY>
-                      </ui:CursorPosition>
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bb22f8fb-a599-4087-9d1b-63123609a07a" InformativeScreenshot="f046d2e3e9c87070c686eb2181d572dc" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Data Import Exceptions - PTLS STG 2024.02.12' /&gt;&lt;java name='Print' role='push button' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:Click.Target>
-                  </ui:Click>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  OK'" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition Position="Center">
-                        <ui:CursorPosition.OffsetX>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetX>
-                        <ui:CursorPosition.OffsetY>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetY>
-                      </ui:CursorPosition>
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9d8576a2-98eb-48f4-a8b0-9973dd67891f" InformativeScreenshot="eb8c49966f4d88eb28f6962509957a94" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** List printing column selection - PTLS STG 2024.02.12' /&gt;&lt;java hasTableAncestor='0' name='OK' role='push button' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:Click.Target>
-                  </ui:Click>
-                  <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey 'text'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="e" KeyModifiers="None">
-                    <ui:SendHotkey.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fa2c8898-2afc-43ee-b527-d4c69455c30c" InformativeScreenshot="2de6326c7220a35bf49ec45562a0a18d" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Print &amp;quot; LISTING&amp;quot; - PTLS STG 2024.02.12' /&gt;&lt;java cls='Combo' role='text' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:SendHotkey.Target>
-                  </ui:SendHotkey>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  OK'" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition Position="Center">
-                        <ui:CursorPosition.OffsetX>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetX>
-                        <ui:CursorPosition.OffsetY>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetY>
-                      </ui:CursorPosition>
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="33a37205-c6a3-42e2-a6f9-c2b28ba14bf9" InformativeScreenshot="5d0b9b20164afb452b25bb84aa16b443" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Print &amp;quot; LISTING&amp;quot; - PTLS STG 2024.02.12' /&gt;&lt;java name='OK' role='push button' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:Click.Target>
-                  </ui:Click>
-                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text'" sap:VirtualizedContainerService.HintSize="334,155" sap2010:WorkflowViewState.IdRef="TypeInto_4">
-                    <ui:TypeInto.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="79417b58-b111-414e-b3d7-9938793a134a" InformativeScreenshot="e6eb3bfe72b02e391ffc59b282234757" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Send Email - PTLS STG 2024.02.12' /&gt;&lt;java cls='Edit' role='text' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:TypeInto.Target>
-                    <ui:TypeInto.Text>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Exception Report'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable CVScreenId="da53e8f1-d0dc-4c01-a5a0-321ed2f4d677" CvElementArea="333, 175, 104, 29" CvTextArea="338, 184, 95, 14" CvTextArgument="Exception Report" CvType="Button" DesignTimeRectangle="333, 175, 104, 30" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Exception Report'" FullSelectorArgument="&lt;java name='Exception Report' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Exception Report' role='push button' check:text='Exception Report' /&gt;" Guid="4070fe79-633f-4f10-b26e-32c1da2fa172" InformativeScreenshot="909b22a92c061152b90e537142526487.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Print'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable CVScreenId="36547868-dc0d-4ca1-bb16-be3ed9bbbbec" CvTextArea="558, 44, 28, 15" CvTextArgument="Print" CvType="Text" DesignTimeRectangle="480, 31, 157, 40" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Print'" FullSelectorArgument="&lt;java name='Print' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Print' role='push button' check:text='Print' /&gt;" Guid="970e3936-f090-42d3-b593-c999b2d1df3c" InformativeScreenshot="70214aeb083848332c2ef7c1a20c1fe5.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Data Import Exceptions - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_13" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable CVScreenId="6d86642e-8af9-4027-a8e6-5c4f5944f1ba" CvTextArea="447, 403, 20, 13" CvTextArgument="OK" CvType="Text" DesignTimeRectangle="298, 393, 290, 33" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'OK'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='OK' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='OK' role='push button' check:text='OK' /&gt;" Guid="61faf146-00b5-483b-aadf-162c18de61ce" InformativeScreenshot="cd558b199bbe797f400734174d5fa01a.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** List printing column selection - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" Shortcuts="[d(hk)]e[u(hk)]" Version="V3" />
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_14" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable CVScreenId="4cff5502-48bd-405e-9d01-4a73bd8b4323" CvTextArea="405, 90, 20, 13" CvTextArgument="OK" CvType="Text" DesignTimeRectangle="270, 76, 262, 40" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'OK'" FullSelectorArgument="&lt;java name='OK' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='OK' role='push button' check:text='OK' /&gt;" Guid="b95ae86e-dfd0-4229-a8b1-84ae5ab8b71b" InformativeScreenshot="45542b0ba06f31c4c486922404348427.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Print &amp;quot; LISTING&amp;quot; - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'To'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,218" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable CVScreenId="0bd53e44-64c8-4739-a71d-5e3c2e3674b2" CvElementArea="120, 60, 566, 23" CvType="InputBox" DesignTimeRectangle="123, 61, 563, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'email'" FullSelectorArgument="&lt;java cls='Edit' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="f245a899-98e0-4335-87a9-76110c5e2398" InformativeScreenshot="9e403e04120005ec1a0cd3e587ed2d34.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Send Email - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target CVScreenId="0bd53e44-64c8-4739-a71d-5e3c2e3674b2" CvTextArea="104, 65, 17, 12" CvTextArgument="To" CvType="Text" DesignTimeRectangle="105, 63, 15, 16" ElementType="Text" FriendlyName="'To'" FullSelectorArgument="&lt;java name='To' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='To' role='label' check:text='To' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.Text>
                       <InArgument x:TypeArguments="x:String">
-                        <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">Address</CSharpValue>
+                        <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_27">Address</CSharpValue>
                       </InArgument>
-                    </ui:TypeInto.Text>
-                  </ui:TypeInto>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Send'" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition Position="Center">
-                        <ui:CursorPosition.OffsetX>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetX>
-                        <ui:CursorPosition.OffsetY>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetY>
-                      </ui:CursorPosition>
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c8ddae4e-c06c-4dfe-b547-203fd46057d1" InformativeScreenshot="d4c7b201647375c4ae2e09ec305f8beb" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Send Email - PTLS STG 2024.02.12' /&gt;&lt;java name='Send' role='push button' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:Click.Target>
-                  </ui:Click>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Close'" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition Position="Center">
-                        <ui:CursorPosition.OffsetX>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetX>
-                        <ui:CursorPosition.OffsetY>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetY>
-                      </ui:CursorPosition>
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="78b36965-79da-434c-9258-4b573f5a79cb" InformativeScreenshot="b875179e6bb1e652227e7ba4330da006" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Data Import Exceptions - PTLS STG 2024.02.12' /&gt;&lt;java name='Close' role='push button' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:Click.Target>
-                  </ui:Click>
+                    </uix:NTypeInto.Text>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Send'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_15" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable CVScreenId="12c60ad3-5452-414d-b539-dba8270a3f1d" CvTextArea="26, 83, 31, 12" CvTextArgument="Send" CvType="Text" DesignTimeRectangle="16, 43, 50, 64" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Send'" FullSelectorArgument="&lt;java name='Send' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Send' role='push button' check:text='Send' /&gt;" Guid="6bd3d83c-be7d-4708-9f6e-bb40e070a189" InformativeScreenshot="4c48d8d52c85bc10c6129d9d8217c048.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Send Email - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="8, 31, 688, 120" FriendlyName="'Send From'" FullSelectorArgument="&lt;java cls='TPanel' role='panel' /&gt;" FuzzySelectorArgument="&lt;java cls='TPanel' role='panel' check:fulltext='Send From ron.hiscock@rlglobal.com&amp;#xD;&amp;#xA;           To ron.hiscock@rlglobal.com&amp;#xD;&amp;#xA;           Cc&amp;#xD;&amp;#xA;       ' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Close'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_16" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable CVScreenId="2cb1b088-9a3a-4cae-8c98-695f74431398" CvTextArea="711, 45, 36, 13" CvTextArgument="Close" CvType="Text" DesignTimeRectangle="637, 31, 157, 40" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Close'" FullSelectorArgument="&lt;java name='Close' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Close' role='push button' check:text='Close' /&gt;" Guid="6b73b5a9-f990-4cd8-ac8e-4716ac8c3181" InformativeScreenshot="579942832f7c2e35b46ce8fa63b2437b.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Data Import Exceptions - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
                 </Sequence>
               </If.Then>
               <If.Else>
@@ -606,50 +392,22 @@
                 </Sequence>
               </If.Else>
             </If>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Exit'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="36ee0432-6259-4f57-b445-baeb249cb589" InformativeScreenshot="cc550e49ea4d392c8af61fb691bf3b92" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;&lt;java name='Exit' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Exit'" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cd195712-a303-427a-9817-1998ce4358d9" InformativeScreenshot="c29a723a478318be6534c23b3dcc2ba2" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;&lt;java hasTableAncestor='0' name='Exit' role='push button' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Exit'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_17" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="0a4811b1-312c-48a6-b026-354bc1a8a369" CvTextArea="389, 224, 21, 13" CvTextArgument="Exit" CvType="Text" DesignTimeRectangle="333, 215, 104, 30" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Exit'" FullSelectorArgument="&lt;java name='Exit' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Exit' role='push button' check:text='Exit' /&gt;" Guid="c9c4d80a-2e78-4270-aa4d-6f8dcf40a29c" InformativeScreenshot="6186fabd36e8b1702004defadda28e62.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Data File - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="186, 163, 264, 94" FriendlyName="'Edit List'" FullSelectorArgument="&lt;java cls='TPanel' role='panel' /&gt;" FuzzySelectorArgument="&lt;java cls='TPanel' role='panel' check:fulltext='Edit List  Exception Report&amp;#xD;&amp;#xA;Import  Exit' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Exit'" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NClick_18" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CVScreenId="c7b14e37-a09b-4a08-879f-8360074a8d1d" CvTextArea="754, 64, 18, 10" CvTextArgument="Exit" CvType="Text" DesignTimeRectangle="742, 33, 42, 46" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Exit'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Exit' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Exit' role='push button' check:text='Exit' /&gt;" Guid="a83a6ccf-77a4-44c0-aac9-26bd81f4124b" InformativeScreenshot="d7f838e1e91869062a4e36aec04106e6.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,143" sap2010:WorkflowViewState.IdRef="LogMessage_2">
               <ui:LogMessage.Level>
                 <InArgument x:TypeArguments="ui:LogLevel">
