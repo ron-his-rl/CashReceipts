@@ -7,7 +7,7 @@
     <x:Property Name="EVAddress" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1114,5617</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1114,5877</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -49,6 +49,8 @@
       <x:String>System.IO</x:String>
       <x:String>System.Security</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -119,7 +121,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="1112,5552" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="1112,5812" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ACHDate">
         <Variable.Default>
@@ -148,13 +150,13 @@
         </InArgument>
       </Assign.Value>
     </Assign>
-    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="1050,5288" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
+    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="1050,5548" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1016,4997" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1016,5257" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="ExceptionFound" />
             </Sequence.Variables>
@@ -189,7 +191,7 @@
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable DesignTimeRectangle="98, 93, 145, 22" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'text'" FullSelectorArgument="&lt;java cls='Edit' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="68ecaf2c-a408-4ca7-bc13-daffce9411dd" InformativeScreenshot="037440fa87160012afd492f299a0f63a.png" IsResponsive="True" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
                       <uix:Target CVScreenId="63de8269-c7f1-411f-a679-7f47521deafb" CvTextArea="22, 97, 74, 14" CvTextArgument="Import profile" CvType="Text" DesignTimeRectangle="22, 95, 73, 16" ElementType="Text" FriendlyName="'Import profile'" FullSelectorArgument="&lt;java name='Import profile' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Import profile' role='label' check:text='Import profile' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
                       <uix:Target CVScreenId="63de8269-c7f1-411f-a679-7f47521deafb" CvTextArea="260, 97, 65, 14" CvTextArgument="Description" CvType="Text" DesignTimeRectangle="261, 95, 64, 16" ElementType="Text" FriendlyName="'Description'" FullSelectorArgument="&lt;java name='Description' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Description' role='label' check:text='Description' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
                     </scg:List>
@@ -222,7 +224,7 @@
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable CVScreenId="1e90c27d-65f7-4461-b5c4-6cc3df0a13a2" CvElementArea="441, 120, 212, 23" CvType="InputBox" DesignTimeRectangle="442, 121, 210, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'ACH040824'" FullSelectorArgument="&lt;java cls='Edit' idx='2' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="76d18d94-0f8c-4810-94c9-63be438f4971" InformativeScreenshot="e545373bdbeddfd3ea2c88e043c1258e.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Field Map Detail - PTLS STG 2024.02.12' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target CVScreenId="1e90c27d-65f7-4461-b5c4-6cc3df0a13a2" CvTextArea="314, 125, 125, 12" CvTextArgument="Set blank field equal to" CvType="Text" DesignTimeRectangle="314, 123, 125, 16" ElementType="Text" FriendlyName="'Set blank field equal to'" FullSelectorArgument="&lt;java name='Set blank field equal to' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Set blank field equal to' role='label' check:text='Set blank field equal to' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -249,7 +251,7 @@
               <uix:NClick.Target>
                 <uix:TargetAnchorable CVScreenId="c6ff84c2-e540-4cf7-b191-ded9fe96edf8" CvTextArea="294, 64, 29, 12" CvTextArgument="Import" CvType="Text" DesignTimeRectangle="287, 33, 42, 46" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Import'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Import' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Import' role='push button' check:text='Import' /&gt;" Guid="6a5eab7e-3633-42a6-b5b6-ccd64990e482" InformativeScreenshot="693a3bd53295cdc40b18bfde01e09c46.png" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target CVScreenId="c6ff84c2-e540-4cf7-b191-ded9fe96edf8" CvTextArea="261, 97, 64, 14" CvTextArgument="Description" CvType="Text" DesignTimeRectangle="261, 95, 64, 16" ElementType="Text" FriendlyName="'Description'" FullSelectorArgument="&lt;java name='Description' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Description' role='label' check:text='Description' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -265,7 +267,7 @@
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable CVScreenId="897d7040-9d3b-4c73-9a56-c466aa06cbb8" CvElementArea="90, 121, 463, 24" CvType="InputBox" DesignTimeRectangle="92, 122, 460, 22" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'H:\CashReceiptsImport.x…'" FullSelectorArgument="&lt;java cls='Edit' idx='4' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="e748b617-238e-4775-a143-10e95060b5af" InformativeScreenshot="854c4b5297b8d2962bebc81361b50a47.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='*' cls='SunAwtDialog' title='*Import Data File - PTLS*' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
                       <uix:Target CVScreenId="897d7040-9d3b-4c73-9a56-c466aa06cbb8" CvTextArea="34, 126, 55, 14" CvTextArgument="Import file" CvType="Text" DesignTimeRectangle="34, 124, 55, 16" ElementType="Text" FriendlyName="'Import file'" FullSelectorArgument="&lt;java name='Import file' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Import file' role='label' check:text='Import file' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
                       <uix:Target DesignTimeRectangle="186, 163, 264, 94" FriendlyName="'Edit List'" FullSelectorArgument="&lt;java cls='TPanel' role='panel' /&gt;" FuzzySelectorArgument="&lt;java cls='TPanel' role='panel' check:fulltext='Edit List  Exception Report&amp;#xD;&amp;#xA;Import  Exit' /&gt;" SearchSteps="Selector, FuzzySelector" />
                     </scg:List>
@@ -282,7 +284,7 @@
               <uix:NClick.Target>
                 <uix:TargetAnchorable CVScreenId="22e47028-8aea-4ef0-9efc-af043b75173c" CvTextArea="252, 224, 37, 14" CvTextArgument="Import" CvType="Text" DesignTimeRectangle="204, 215, 104, 30" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Import'" FullSelectorArgument="&lt;java name='Import' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Import' role='push button' check:text='Import' /&gt;" Guid="0e62e56c-dba9-46f1-b469-5fd8be8a30bf" InformativeScreenshot="db2bb9edafef2403d00422082c44a0ff.png" ScopeSelectorArgument="&lt;wnd app='*' cls='SunAwtDialog' title='*Import Data File - PTLS*' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target DesignTimeRectangle="186, 163, 264, 94" FriendlyName="'Edit List'" FullSelectorArgument="&lt;java cls='TPanel' role='panel' /&gt;" FuzzySelectorArgument="&lt;java cls='TPanel' role='panel' check:fulltext='Edit List  Exception Report&amp;#xD;&amp;#xA;Import  Exit' /&gt;" SearchSteps="Selector, FuzzySelector" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -299,9 +301,9 @@
                 <uix:TargetAnchorable CVScreenId="562ea17b-8959-4a09-b5fe-a1094a98a0ed" CvTextArea="403, 468, 34, 12" CvTextArgument="Close" CvType="Text" DesignTimeRectangle="8, 458, 796, 33" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Close'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Close' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Close' role='push button' check:text='Close' /&gt;" Guid="b59fc48d-a5ea-47d9-a200-2867216c4254" InformativeScreenshot="34c20987e6ca9474223657345d7d6300.png" ScopeSelectorArgument="&lt;wnd app='*' cls='SunAwtDialog' title='*Data Import Post List - PTLS*' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NCheckState sap2010:Annotation.AnnotationText="then email the exception report to the designated people. Otherwise log there was no reported error." DisplayName="Check App State 'Exception Report'" sap:VirtualizedContainerService.HintSize="954,1957" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+            <uix:NCheckState sap2010:Annotation.AnnotationText="then email the exception report to the designated people. Otherwise log there was no reported error." DisplayName="Check App State 'Exception Report'" sap:VirtualizedContainerService.HintSize="954,2215" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,1709" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,1967" sap2010:WorkflowViewState.IdRef="Sequence_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -341,6 +343,22 @@
                     <uix:NTypeInto.Text>
                       <InArgument x:TypeArguments="x:String">
                         <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_52">EVAddress</CSharpValue>
+                      </InArgument>
+                    </uix:NTypeInto.Text>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Subject'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable CVScreenId="49fc1ffc-803b-4da5-bc75-3a78fa77d45e" CvElementArea="122, 109, 565, 24" CvType="InputBox" DesignTimeRectangle="123, 111, 563, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'LISTING'" FullSelectorArgument="&lt;java cls='Edit' idx='3' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="96e6e4b7-94d4-48f0-be18-a70f96500f2a" InformativeScreenshot="b9ab37ff98ea77ebbe0fcbdce06a44d2.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Send Email - PTLS STG 2024.02.12' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target CVScreenId="49fc1ffc-803b-4da5-bc75-3a78fa77d45e" CvTextArea="78, 115, 43, 14" CvTextArgument="Subject" CvType="Text" DesignTimeRectangle="78, 113, 42, 16" ElementType="Text" FriendlyName="'Subject'" FullSelectorArgument="&lt;java name='Subject' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Subject' role='label' check:text='Subject' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.Text>
+                      <InArgument x:TypeArguments="x:String">
+                        <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_55">CustomerName + DateTime.Today.ToString("MMddyy")</CSharpValue>
                       </InArgument>
                     </uix:NTypeInto.Text>
                   </uix:NTypeInto>
@@ -387,7 +405,7 @@
               <uix:NCheckState.Target>
                 <uix:TargetAnchorable CVScreenId="b54a3bce-4954-414f-8763-979f4c046a5b" CvElementArea="333, 175, 104, 29" CvTextArea="338, 184, 95, 14" CvTextArgument="Exception Report" CvType="Button" DesignTimeRectangle="333, 175, 104, 30" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Exception Report'" FullSelectorArgument="&lt;java name='Exception Report' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Exception Report' role='push button' check:text='Exception Report' /&gt;" Guid="052d831f-9421-423b-9c43-fbbb8e0485be" InformativeScreenshot="e36706698744d941190b7a33d83f8b55.png" ScopeSelectorArgument="&lt;wnd app='*' cls='SunAwtDialog' title='*Import Data File - PTLS*' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target DesignTimeRectangle="186, 163, 264, 94" FriendlyName="'Edit List'" FullSelectorArgument="&lt;java cls='TPanel' role='panel' /&gt;" FuzzySelectorArgument="&lt;java cls='TPanel' role='panel' check:fulltext='Edit List  Exception Report&amp;#xD;&amp;#xA;Import  Exit' /&gt;" SearchSteps="Selector, FuzzySelector" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -403,7 +421,7 @@
               <uix:NClick.Target>
                 <uix:TargetAnchorable CVScreenId="0a4811b1-312c-48a6-b026-354bc1a8a369" CvTextArea="389, 224, 21, 13" CvTextArgument="Exit" CvType="Text" DesignTimeRectangle="333, 215, 104, 30" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Exit'" FullSelectorArgument="&lt;java name='Exit' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='Exit' role='push button' check:text='Exit' /&gt;" Guid="c9c4d80a-2e78-4270-aa4d-6f8dcf40a29c" InformativeScreenshot="6186fabd36e8b1702004defadda28e62.png" ScopeSelectorArgument="&lt;wnd app='*' cls='SunAwtDialog' title='*Import Data File - PTLS*' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target DesignTimeRectangle="186, 163, 264, 94" FriendlyName="'Edit List'" FullSelectorArgument="&lt;java cls='TPanel' role='panel' /&gt;" FuzzySelectorArgument="&lt;java cls='TPanel' role='panel' check:fulltext='Edit List  Exception Report&amp;#xD;&amp;#xA;Import  Exit' /&gt;" SearchSteps="Selector, FuzzySelector" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
