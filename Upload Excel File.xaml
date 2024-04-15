@@ -7,7 +7,7 @@
     <x:Property Name="EVAddress" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1114,5877</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1114,5793</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -121,7 +121,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="1112,5812" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="1112,5688" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ACHDate">
         <Variable.Default>
@@ -150,7 +150,7 @@
         </InArgument>
       </Assign.Value>
     </Assign>
-    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="1050,5548" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
+    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="1050,5424" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -455,7 +455,7 @@
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="0, 0, 1920, 111" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP2SURBVFhHlZY/ixNRFMVnsonrblYUDasoghArDTZpRYKlnYWddUo/hN9iCrHxK7hWW9mmsRYEEQQREXVBRPH5fndyZu+8vEniwGHevPfmnnP/vDtT/P1ehP9F+BHxM0Gcy+3dhK0FGOmfiFATnnwuw5cPNRibCNbYE8c5GzlsFGDE0TDj46OdMJ8X4f7d8+HOrWEY39gNVw737M4ca+wxQUuhqb0UawXgze+TMrx41g/TaREODkaG0eiy4eq1682Y+X7/YijLfRNUVUX49TUKiTZytoVOAXjw9k3PPMMwJOPxzShkmsVkctvWEYUYCSEiimAOWQG8wIuEF3IRz2azBqkAgAgJefzwMDx9Mmmi0SWiLeDbKflwf2ieYBDjntR7mwPrx8/vReKp2SmKwtKYE9ESQL4IO56L3HstYtKBYTAYDFqgOPEcWF3s9EzA3tleNh2NAKqdglPO07BDjneQYrTs1YZT4PXH1w9MAM9+H+J0ZFcFRGWEieKBqIu8ixhRiCf35D23B1TxqPoomAC858ig0HuvfG8iB9V8GsL7R+Y9KcztAazRvBSFWkDMPflhA7nSGQfKt3KZgnnCHcLcyHEit8/DF2QtID7QxbQBowDi1HPGmucZj8g7VU8KtC8HnAFwqUEV6vF0Ojx+efQqbphb+BeLhT17I9QE81VVtea3Ae9gjxqxLhm5C3LBw6ULfSPmYhPggoya4GWBi70YRZDmGTPHmuZ4V3vk0O6ZMnx6V9eBCaAozg3LhtSuuLm+LQxcMsJFhCRYc1yy0bIVL28DkfSbRgBqKB5t0N0bZgyh5lJSQZfs6NKaItcSQAQoIF7i2HFPww6hxiLzz9wVbp4lmEj5fTxz0k5TQBHGAUWIsk2ggIiWjptIuwAhd8QACr0pQgTkjmEXIOWsq+FQuBiXhyIRIR5z9+sIoFs2x9AEuEbUBchEDhQBfXDoC3yMmNOHiXnOPVECkNPqVxtRDAUfia4ejiEajcj1oVkHNSxIqSuAWBqX8t8IMBFRET8OOWPWapfkCEFQbh+AGO8hw2uRM+Y7Y11w6X1bwDIKCq1g+VqSq9cjQGFOgdcKOwUI5D0R9h+ilgATEWthsSisU0HOC5AKREKfa0H9HfAsrz05a7y39odEYANFggA8pfgEH1ZP4J+Bjp8n7/ovXBEAJEKRACooEayDyBHckMfo0nNSrrwAmlMUQchUExjCmy5vBdYRaj82MYUKe44cZAUIvEhh4gHHBxEY9vkGjAEes85eqt0KLhN2j7UCAD+qGMEYacEwUYGEuuAOmOPEsEfEvtq7sFGAgDEzGnNJH6eZ8EUDjK23s74lsbC1AA99wFLk9q5HEf4BzLGpHznXSR0AAAAASUVORK5CYII=" InformativeScreenshot="13eccb911f13e5f566d300ff8838a9e3.png" Selector="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12' /&gt;" Title="** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12">
+        <uix:TargetApp Area="0, 0, 1920, 111" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP2SURBVFhHlZY/ixNRFMVnsonrblYUDasoghArDTZpRYKlnYWddUo/hN9iCrHxK7hWW9mmsRYEEQQREXVBRPH5fndyZu+8vEniwGHevPfmnnP/vDtT/P1ehP9F+BHxM0Gcy+3dhK0FGOmfiFATnnwuw5cPNRibCNbYE8c5GzlsFGDE0TDj46OdMJ8X4f7d8+HOrWEY39gNVw737M4ca+wxQUuhqb0UawXgze+TMrx41g/TaREODkaG0eiy4eq1682Y+X7/YijLfRNUVUX49TUKiTZytoVOAXjw9k3PPMMwJOPxzShkmsVkctvWEYUYCSEiimAOWQG8wIuEF3IRz2azBqkAgAgJefzwMDx9Mmmi0SWiLeDbKflwf2ieYBDjntR7mwPrx8/vReKp2SmKwtKYE9ESQL4IO56L3HstYtKBYTAYDFqgOPEcWF3s9EzA3tleNh2NAKqdglPO07BDjneQYrTs1YZT4PXH1w9MAM9+H+J0ZFcFRGWEieKBqIu8ixhRiCf35D23B1TxqPoomAC858ig0HuvfG8iB9V8GsL7R+Y9KcztAazRvBSFWkDMPflhA7nSGQfKt3KZgnnCHcLcyHEit8/DF2QtID7QxbQBowDi1HPGmucZj8g7VU8KtC8HnAFwqUEV6vF0Ojx+efQqbphb+BeLhT17I9QE81VVtea3Ae9gjxqxLhm5C3LBw6ULfSPmYhPggoya4GWBi70YRZDmGTPHmuZ4V3vk0O6ZMnx6V9eBCaAozg3LhtSuuLm+LQxcMsJFhCRYc1yy0bIVL28DkfSbRgBqKB5t0N0bZgyh5lJSQZfs6NKaItcSQAQoIF7i2HFPww6hxiLzz9wVbp4lmEj5fTxz0k5TQBHGAUWIsk2ggIiWjptIuwAhd8QACr0pQgTkjmEXIOWsq+FQuBiXhyIRIR5z9+sIoFs2x9AEuEbUBchEDhQBfXDoC3yMmNOHiXnOPVECkNPqVxtRDAUfia4ejiEajcj1oVkHNSxIqSuAWBqX8t8IMBFRET8OOWPWapfkCEFQbh+AGO8hw2uRM+Y7Y11w6X1bwDIKCq1g+VqSq9cjQGFOgdcKOwUI5D0R9h+ilgATEWthsSisU0HOC5AKREKfa0H9HfAsrz05a7y39odEYANFggA8pfgEH1ZP4J+Bjp8n7/ovXBEAJEKRACooEayDyBHckMfo0nNSrrwAmlMUQchUExjCmy5vBdYRaj82MYUKe44cZAUIvEhh4gHHBxEY9vkGjAEes85eqt0KLhN2j7UCAD+qGMEYacEwUYGEuuAOmOPEsEfEvtq7sFGAgDEzGnNJH6eZ8EUDjK23s74lsbC1AA99wFLk9q5HEf4BzLGpHznXSR0AAAAASUVORK5CYII=" InformativeScreenshot="13eccb911f13e5f566d300ff8838a9e3.png" Title="** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String">
               <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">EVApplicationArgs</CSharpValue>
@@ -466,6 +466,11 @@
               <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">EVApplicationPath</CSharpValue>
             </InArgument>
           </uix:TargetApp.FilePath>
+          <uix:TargetApp.Selector>
+            <InArgument x:TypeArguments="x:String">
+              <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_56">EVSelectorTitle</CSharpValue>
+            </InArgument>
+          </uix:TargetApp.Selector>
         </uix:TargetApp>
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
