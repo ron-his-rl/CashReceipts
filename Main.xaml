@@ -1,9 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EVSelectorTitle="&lt;wnd app='*' cls='SunAwtFrame' title='*' /&gt;" this:Main.EVApplicationPath="C:\McLeod Software\stg_1810\bin\lme - lme 1810 staging_x64.exe" this:Main.EVApplicationArgs="-host PLSTGMCL05.staging.local -port 5662 -appname D:\McLeod\1810_Staging\lme\deployment\apps\lmclient.application" this:Main.EVAddress="ron.hiscock@rlglobal.com,david.mundt@rlglobal.com" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EVSelectorTitle="&lt;wnd app='*' cls='SunAwtFrame' title='*' /&gt;" this:Main.EVApplicationPath="C:\McLeod Software\stg_1810\bin\lme - lme 1810 staging_x64.exe" this:Main.EVApplicationArgs="-host PLSTGMCL05.staging.local -port 5662 -appname D:\McLeod\1810_Staging\lme\deployment\apps\lmclient.application" this:Main.EVAddress="ron.hiscock@rlglobal.com,david.mundt@rlglobal.com" this:Main.EVInputFolderPath="P:\Accounting\Shared Files\Cash receipts\UIPath\input" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="EVSelectorTitle" Type="InArgument(x:String)" />
     <x:Property Name="EVApplicationPath" Type="InArgument(x:String)" />
     <x:Property Name="EVApplicationArgs" Type="InArgument(x:String)" />
     <x:Property Name="EVAddress" Type="InArgument(x:String)" />
+    <x:Property Name="EVInputFolderPath" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>1114,1046</sap:VirtualizedContainerService.HintSize>
@@ -131,7 +132,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.xls" Folder="P:\Accounting\Shared Files\Cash receipts\UIPath\input" sap:VirtualizedContainerService.HintSize="484,681" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.xls" sap:VirtualizedContainerService.HintSize="484,681" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -180,6 +181,11 @@
           </Sequence>
         </ActivityAction>
       </ui:ForEachFileX.Body>
+      <ui:ForEachFileX.Folder>
+        <InArgument x:TypeArguments="x:String">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_24">EVInputFolderPath</CSharpValue>
+        </InArgument>
+      </ui:ForEachFileX.Folder>
     </ui:ForEachFileX>
     <ui:CloseApplication DisplayName="Close Application 'lme -'" sap:VirtualizedContainerService.HintSize="484,107" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
       <ui:CloseApplication.Target>
