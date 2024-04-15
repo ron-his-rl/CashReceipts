@@ -1,13 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Excel_File" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Excel_File" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="FilePath" Type="InArgument(x:String)" />
     <x:Property Name="EVSelectorTitle" Type="InArgument(x:String)" />
     <x:Property Name="EVApplicationPath" Type="InArgument(x:String)" />
     <x:Property Name="EVApplicationArgs" Type="InArgument(x:String)" />
     <x:Property Name="EVAddress" Type="InArgument(x:String)" />
+    <x:Property Name="BreakTriggerScopeInArgument" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1114,5789</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1114,6788</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,6 +52,11 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -119,9 +125,11 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="1112,5724" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="1112,6723" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ACHDate">
         <Variable.Default>
@@ -150,13 +158,13 @@
         </InArgument>
       </Assign.Value>
     </Assign>
-    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="1050,5460" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
+    <uix:NApplicationCard CloseMode="Never" DisplayName="Use Application: ** DEV ** LoadMaster Main Menu - PTLS STG 2024.02.12" sap:VirtualizedContainerService.HintSize="1050,6459" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="e1ee6772-561b-4e00-a4aa-d5637abd3a17">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1016,5293" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1016,6292" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="ExceptionFound" />
             </Sequence.Variables>
@@ -209,24 +217,111 @@
                 </InArgument>
               </uix:NTypeInto.Text>
             </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'check_number'" sap:VirtualizedContainerService.HintSize="954,193" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable CVScreenId="b917ef40-2de2-4f28-8c01-9070118aca69" CvTextArea="9, 262, 83, 14" CvTextArgument="check_number" CvType="Text" DesignTimeRectangle="9, 261, 109, 15" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'check_number'" FullSelectorArgument="&lt;java cls='GridTable' role='table' /&gt;&lt;java role='label' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;java cls='GridTable' role='table' /&gt;&lt;java role='label' check:text='check_number' /&gt;" Guid="3c305d8e-e35e-4868-bb12-b56088df8f64" InformativeScreenshot="f8b4e38025aa9ca825d448dce2b97fa7.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive" />
-              </uix:NClick.Target>
-              <uix:NClick.VerifyOptions>
-                <uix:VerifyExecutionOptions DisplayName="Label 'Set blank field equal to'" Mode="Appears">
-                  <uix:VerifyExecutionOptions.Retry>
-                    <InArgument x:TypeArguments="x:Boolean" />
-                  </uix:VerifyExecutionOptions.Retry>
-                  <uix:VerifyExecutionOptions.Target>
-                    <uix:TargetAnchorable CVScreenId="790906b2-1f28-4cf3-b27a-ae1162c7363f" CvTextArea="314, 125, 125, 12" CvTextArgument="Set blank field equal to" CvType="Text" DesignTimeRectangle="314, 123, 125, 16" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Set blank field equal to'" FullSelectorArgument="&lt;java name='Set blank field equal to' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Set blank field equal to' role='label' check:text='Set blank field equal to' /&gt;" Guid="4bd0f2a1-2729-451c-b389-8cfe3c3f772d" InformativeScreenshot="7afe309a5d94fadf570d67919b7977e4.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Field Map Detail - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
-                  </uix:VerifyExecutionOptions.Target>
-                  <uix:VerifyExecutionOptions.Timeout>
-                    <InArgument x:TypeArguments="x:Double" />
-                  </uix:VerifyExecutionOptions.Timeout>
-                </uix:VerifyExecutionOptions>
-              </uix:NClick.VerifyOptions>
-            </uix:NClick>
+            <TryCatch sap2010:Annotation.AnnotationText="Try and find the check number, if you can't find it then email the excel file and close out of the pop-ups to continue the iteration" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="954,1192" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'check_number'" sap:VirtualizedContainerService.HintSize="334,193" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable CVScreenId="b917ef40-2de2-4f28-8c01-9070118aca69" CvTextArea="9, 262, 83, 14" CvTextArgument="check_number" CvType="Text" DesignTimeRectangle="9, 261, 109, 15" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'check_number'" FullSelectorArgument="&lt;java cls='GridTable' role='table' /&gt;&lt;java role='label' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;java cls='GridTable' role='table' /&gt;&lt;java role='label' check:text='check_number' /&gt;" Guid="3c305d8e-e35e-4868-bb12-b56088df8f64" InformativeScreenshot="f8b4e38025aa9ca825d448dce2b97fa7.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                  </uix:NClick.Target>
+                  <uix:NClick.VerifyOptions>
+                    <uix:VerifyExecutionOptions DisplayName="Label 'Set blank field equal to'" Mode="Appears">
+                      <uix:VerifyExecutionOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionOptions.Retry>
+                      <uix:VerifyExecutionOptions.Target>
+                        <uix:TargetAnchorable CVScreenId="790906b2-1f28-4cf3-b27a-ae1162c7363f" CvTextArea="314, 125, 125, 12" CvTextArgument="Set blank field equal to" CvType="Text" DesignTimeRectangle="314, 123, 125, 16" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Set blank field equal to'" FullSelectorArgument="&lt;java name='Set blank field equal to' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Set blank field equal to' role='label' check:text='Set blank field equal to' /&gt;" Guid="4bd0f2a1-2729-451c-b389-8cfe3c3f772d" InformativeScreenshot="7afe309a5d94fadf570d67919b7977e4.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Field Map Detail - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:VerifyExecutionOptions.Target>
+                      <uix:VerifyExecutionOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionOptions.Timeout>
+                    </uix:VerifyExecutionOptions>
+                  </uix:NClick.VerifyOptions>
+                </uix:NClick>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="552,1029" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence sap:VirtualizedContainerService.HintSize="546,960" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <umab:OutlookApplicationCard Account="{x:Null}" AccountMismatchBehavior="UseDefaultEmailAccount" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="484,451" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_1">
+                        <umab:OutlookApplicationCard.Body>
+                          <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,267" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="388,152" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal">
+                                <ui:SendOutlookMail.Body>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_60">exception.ToString()</CSharpValue>
+                                  </InArgument>
+                                </ui:SendOutlookMail.Body>
+                                <ui:SendOutlookMail.Files>
+                                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                    <InArgument x:TypeArguments="x:String">
+                                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_58">FilePath</CSharpValue>
+                                    </InArgument>
+                                  </scg:List>
+                                </ui:SendOutlookMail.Files>
+                                <ui:SendOutlookMail.Subject>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_62">"Cash receipt customer account not found: " + CustomerName</CSharpValue>
+                                  </InArgument>
+                                </ui:SendOutlookMail.Subject>
+                                <ui:SendOutlookMail.To>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_61">EVAddress</CSharpValue>
+                                  </InArgument>
+                                </ui:SendOutlookMail.To>
+                              </ui:SendOutlookMail>
+                            </Sequence>
+                          </ActivityAction>
+                        </umab:OutlookApplicationCard.Body>
+                      </umab:OutlookApplicationCard>
+                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NClick_25" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable CVScreenId="bd217c84-6793-4ab6-8d97-a40cc020c7d4" CvTextArea="153, 95, 19, 12" CvTextArgument="OK" CvType="Text" DesignTimeRectangle="98, 89, 108, 24" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'OK'" FullSelectorArgument="&lt;java name='OK' role='push button' /&gt;" FuzzySelectorArgument="&lt;java name='OK' role='push button' check:text='OK' /&gt;" Guid="7e368e04-a969-4531-8620-5013be84aebc" InformativeScreenshot="2e980f4a9f64f5ce8476823af0074551.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** LoadMaster - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="bd217c84-6793-4ab6-8d97-a40cc020c7d4" CvTextArea="58, 49, 209, 12" CvTextArgument="No records match your search criteria." CvType="Text" DesignTimeRectangle="49, 31, 247, 53" ElementType="InputBox" FriendlyName="'No records'" FullSelectorArgument="&lt;java cls='JTextArea' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='JTextArea' role='text' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NClick.Target>
+                      </uix:NClick>
+                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Exit'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NClick_26" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable CVScreenId="f4493c66-5e0b-4aaa-8e38-f05ad2e82e99" CvTextArea="754, 64, 18, 10" CvTextArgument="Exit" CvType="Text" DesignTimeRectangle="742, 33, 42, 46" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Exit'" FullSelectorArgument="&lt;java hasTableAncestor='0' name='Exit' role='push button' /&gt;" FuzzySelectorArgument="&lt;java hasTableAncestor='0' name='Exit' role='push button' check:text='Exit' /&gt;" Guid="d77c8a12-eb9a-4c74-bc13-173e0a237952" InformativeScreenshot="225c838c65d7d0263b985f2c0369b03f.png" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtFrame' title='** DEV ** Data File Import Mapping - PTLS STG 2024.02.12' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                        </uix:NClick.Target>
+                      </uix:NClick>
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
             <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Set blank field equal to'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable CVScreenId="1e90c27d-65f7-4461-b5c4-6cc3df0a13a2" CvElementArea="441, 120, 212, 23" CvType="InputBox" DesignTimeRectangle="442, 121, 210, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'ACH040824'" FullSelectorArgument="&lt;java cls='Edit' idx='2' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="76d18d94-0f8c-4810-94c9-63be438f4971" InformativeScreenshot="e545373bdbeddfd3ea2c88e043c1258e.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='lme - lme 1810 staging_x64.exe' cls='SunAwtDialog' title='** DEV ** Import Field Map Detail - PTLS STG 2024.02.12' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
