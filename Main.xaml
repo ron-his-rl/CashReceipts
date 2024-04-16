@@ -5,9 +5,10 @@
     <x:Property Name="EVApplicationArgs" Type="InArgument(x:String)" />
     <x:Property Name="EVAddress" Type="InArgument(x:String)" />
     <x:Property Name="EVInputFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="EVOutputFolderPath" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>771.2,1056.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1155.2,1056.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -169,7 +170,7 @@
             <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="387.2,160" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True">
               <ui:MoveFile.Destination>
                 <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">"P:\\Accounting\\Shared Files\\Cash receipts\\UIPath\\Archive\\" + System.IO.Path.GetFileNameWithoutExtension(CurrentFile.FullName) + DateTime.Today.ToString("MMddyy") + ".xls"</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">EVOutputFolderPath + System.IO.Path.GetFileNameWithoutExtension(CurrentFile.FullName) + DateTime.Today.ToString("MMddyy") + ".xls"</CSharpValue>
                 </InArgument>
               </ui:MoveFile.Destination>
               <ui:MoveFile.Path>
