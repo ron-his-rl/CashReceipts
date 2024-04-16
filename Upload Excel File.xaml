@@ -1,10 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Excel_File" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Excel_File" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="FilePath" Type="InArgument(x:String)" />
     <x:Property Name="EVSelectorTitle" Type="InArgument(x:String)" />
     <x:Property Name="EVApplicationPath" Type="InArgument(x:String)" />
     <x:Property Name="EVApplicationArgs" Type="InArgument(x:String)" />
     <x:Property Name="EVAddress" Type="InArgument(x:String)" />
+    <x:Property Name="BreakTriggerScopeInArgument" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>1155.2,5768</sap:VirtualizedContainerService.HintSize>
@@ -51,6 +52,11 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -119,6 +125,8 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="For each excel file in the folder, go through PTLS and upload it. " DisplayName="Upload Excel File" sap:VirtualizedContainerService.HintSize="1110.4,5703.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -221,6 +229,7 @@
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Set blank field equal to'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="952,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="e1ee6772-561b-4e00-a4aa-d5637abd3a17" Version="V3">
+
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable CVScreenId="1e90c27d-65f7-4461-b5c4-6cc3df0a13a2" CvElementArea="441, 120, 212, 23" CvType="InputBox" DesignTimeRectangle="442, 121, 210, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'ACH040824'" FullSelectorArgument="&lt;java cls='Edit' idx='2' role='text' /&gt;" FuzzySelectorArgument="&lt;java cls='Edit' role='text' /&gt;" Guid="76d18d94-0f8c-4810-94c9-63be438f4971" InformativeScreenshot="e545373bdbeddfd3ea2c88e043c1258e.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='*' cls='SunAwtDialog' title='*Import Field Map Detail*' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
