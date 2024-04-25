@@ -1,0 +1,50 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "AccountName&Sequence_1",
+        "ACHDate&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "EVOutputFolderPath",
+        "EVSelectorTitle",
+        "EVApplicationPath",
+        "EVApplicationArgs",
+        "EVAddress",
+        "EVInputFolderPath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Upload Excel File.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "ACHDate&Sequence_1",
+        "TestFilePath&Sequence_1",
+        "Address&Sequence_1",
+        "CustomerName&Sequence_1",
+        "ExceptionFound&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "FilePath",
+        "EVSelectorTitle",
+        "EVApplicationPath",
+        "EVApplicationArgs",
+        "EVAddress"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}
